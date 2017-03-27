@@ -13,11 +13,8 @@
   ;; If there is more than one, they won't work right.
   )
 
-
-
 (global-set-key "\C-h" 'delete-backward-char)
 (setq scroll-step 1)
-
 
 (defun my-c-mode-hook ()
   (c-set-style "linux")
@@ -27,7 +24,6 @@
   (setq c-tab-always-indent nil)
   )
 
-
 (defun my-c-common-mode ()
   (c-toggle-hungry-state 1))
 (add-hook 'c-mode-common-hook 'my-c-common-mode)
@@ -35,7 +31,6 @@
 
 (add-hook 'c-mode-hook 'my-c-mode-hook)
 (add-hook 'c++-mode-hook 'my-c-mode-hook)
-
 
 ;;;====================================
 ;;;; print - 印刷設定
@@ -53,7 +48,6 @@
 ;;(cua-mode t)
 ;;(setq cua-enable-cua-keys nil)
 
-
 (cua-mode t)
 (setq cua-auto-tabify-rectangles nil) ;; Don't tabify after rectangle commands
 (transient-mark-mode 1) ;; No region when it is not highlighted
@@ -63,20 +57,16 @@
 ;対応する確固の強調
 (show-paren-mode 1)
 
-
 ;テーマカラー
 ;(require 'color-theme)
 ;(color-theme-initialize)
 ;(color-theme-arjen)
 (load-theme 'deeper-blue t)
 
-
 ;エスケープシーケンスを処理
 (autoload 'ansi-color-for-comint-mode-on "ansi-color"
 		  "Set `ansi-color-for-comint-mode' to t." t)
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
-
-
 
 
 ;;汎用機の SPF (mule みたいなやつ) には
@@ -102,17 +92,12 @@
 (global-set-key [f2] 'swap-screen)
 (global-set-key [S-f2] 'swap-screen-with-cursor)
 
-
-
-
-
-
 ;;;====================================
 ;;;; Buffer 設定
 ;;;===================================
-;;; iswitchb は、バッファ名の一部の文字を入力することで、
-;;; 選択バッファの絞り込みを行う機能を実現します。
-;;; バッファ名を先頭から入力する必要はなく、とても使いやすくなります。
+;;; iswitchb は、バッファ名の一部の文字を入力することで
+;;; 選択バッファの絞り込みを行う機能を実現
+;;; バッファ名を先頭から入力する必要はなく、とても使いやすくなる
 (require 'edmacro)
 (iswitchb-mode 1) ;;iswitchbモードON
 (defun iswitchb-local-keys ()
@@ -125,16 +110,11 @@
 		  ("<down>"  . ignore             ))))
 (add-hook 'iswitchb-define-mode-map-hook 'iswitchb-local-keys)
 
-
 (setq iswitchb-buffer-ignore '("^ " "*"))
 ;;setq iswitchb-buffer-ignore '("^\\*"))
 (setq iswitchb-default-method 'samewindow)
 
-
 (global-set-key [f3] 'iswitchb-buffer)
-
-
-
 
 (defun my-swap-cursor()
   "Swap cursor in two window."
@@ -142,22 +122,18 @@
   (other-window 1) )
 (global-set-key [f5] 'my-swap-cursor)
 
-
 (defun my-kill-ring-save()
   "Copy to kill-ring buffer and discard mark point."
   (interactive)
   (kill-ring-save (region-beginning) (region-end)) 
   (keyboard-quit) )
 
-
-;Fnキーの定義 MIFESっぽい感じで定義してます。 簡単なので
+;Fnキーの定義 MIFESっぽい感じで定義(簡単なので)
 (global-set-key [f6] 'set-mark-command)
 (global-set-key [f7] 'kill-region)
 ;(global-set-key [f8] 'my-kill-ring-save)
 (global-set-key [f8] 'rgrep)
 (global-set-key [f9] 'yank)
-
-
 
 
 (defun window-toggle-division ()
@@ -175,7 +151,6 @@
 	(other-window 1)
 	(switch-to-buffer other-buf)
 	(other-window -1)))
-
 
 (global-set-key[f4] 'window-toggle-division)
 
